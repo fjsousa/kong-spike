@@ -7,18 +7,6 @@ var conf = convict({
         default: 'local',
         env: 'NODE_ENV'
     },
-    isMock: {
-        doc: '',
-        format: Boolean,
-        default: false,
-        env: 'MOCK'
-    },
-    isDev: {
-        doc: '',
-        format: Boolean,
-        default: true,
-        env: ''
-    },
     version: {
         doc: '',
         format: String,
@@ -39,26 +27,12 @@ var conf = convict({
             env: 'LISTEN_PORT'
         }
     },
-    stormPath: {
-        key: {
+    kong: {
+        domain: {
             doc: '',
-            format: String,
-            default: '1RB6YAZWLMT8YAS8ODF5L0U7E',   // dev
-            env: 'STORM_KEY'
-        }
-    },
-    auth: {
-        secret: {
-            doc: '',
-            format: String,
-            default: 'sugarbears',
-            env: 'AUTH_SECRET'
-        },
-        ttl: {
-            doc: '',
-            format: Number,
-            default: 24,
-            env: 'AUTH_TTL'
+            format: 'url',
+            default: 'http://192.168.99.100:8001',   // dev
+            env: 'KONG_DOMAIN'
         }
     }
 });

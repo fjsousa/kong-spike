@@ -11,10 +11,11 @@ var Hapi = require('hapi'),
     hapiSwaggeredUi = require('hapi-swaggered-ui'),
     hapiSwaggered = require('hapi-swaggered');
 
-var app = null,
-    storm = require('./lib/storm');
-    registerRoute = require('./routes/register'),
-    loginRoute = require('./routes/login');
+var app = null;
+var getConsumer = require('./routes/get-consumer');
+var postConsumer = require('./routes/post-consumer');
+var getConsumers = require('./routes/get-consumers');
+var delConsumer = require('./routes/del-consumer');
 
 server.connection({
     host: config.get('http.listen'),
@@ -34,8 +35,8 @@ server.register({
             '/foobar': 'Example foobar description'
         },
         info: {
-            title: 'api-oauth.style.com',
-            description: 'Style.com oauth server',
+            title: 'api-auth.style.com',
+            description: 'Style.com auth server',
             version: '0.1'
         }
     }
@@ -77,19 +78,21 @@ server.register([
 // api
 server.register([
     {
-        register: registerRoute
+        register: delConsumer
     },
     {
-        register: loginRoute
+        register: getConsumers
+    },
+    {
+        register: getConsumer
+    },
+    {
+        register: postConsumer
     }
 ], function(err) {
     if (err) throw err;
 });
 
 server.start(function () {
-    storm.init(function(err) {
-        if (err) throw err;
-
-        console.log('info', 'server running at: ' + server.info.uri);
-    });
+  console.log('info', 'server running at: ' + server.info.uri);
 });
