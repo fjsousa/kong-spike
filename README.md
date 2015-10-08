@@ -6,5 +6,8 @@
 ### Run ###
 ```npm run dev```
 
-point your browser to 
-```localhost:8000```
+Point your browser to 
+
+```
+http://localhost:8000
+```
