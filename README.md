@@ -1,4 +1,4 @@
-# Kong Coonsumer CRUD#
+# Kong Consumer CRUD#
 
 ### Installation ###
 ```npm install```
