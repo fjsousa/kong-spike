@@ -35,8 +35,8 @@ server.register({
             '/foobar': 'Example foobar description'
         },
         info: {
-            title: 'api-auth.style.com',
-            description: 'Style.com auth server',
+            title: 'auth.api.style.com',
+            description: 'Style.com API auth server',
             version: '0.1'
         }
     }
@@ -59,18 +59,15 @@ server.register([
     {
         register: hapiSwaggeredUi,
         options: {
-            swaggerEndpoint: '/swagger/swagger',
             title: 'authserver',
-            authorization: {
-                field: 'apiKey',
-                scope: 'query'
+            // swaggerEndpoint: '/swagger.json',
+            swaggerOptions: {
+                docExpansion: 'full'    
             }
+            
         }
     }], {
-    select: 'api',
-    routes: {
-        prefix: '/docs'
-    }
+    select: 'api'
 }, function(err) {
     if (err) throw err;
 });
