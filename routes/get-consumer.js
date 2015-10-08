@@ -5,6 +5,7 @@
 var joi = require('joi');
 var config = require('../config');
 var kong = require('../lib/kong')
+var rule = require('../util/username');
 
 exports.register = function(server, options, next) {
     server.route({
@@ -21,7 +22,7 @@ exports.register = function(server, options, next) {
             notes: 'Get Consumer data',
             validate: {
                 params: joi.object({
-                  username: joi.string().required().description('consumer username or id'),
+                  username: joi.string().regex(rule).required().description('consumer username or id'),
                 })
             }
         },

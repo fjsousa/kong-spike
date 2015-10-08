@@ -4,7 +4,7 @@
 
 var joi = require('joi');
 var config = require('../config');
-var kong = require('../lib/kong')
+var kong = require('../lib/kong');
 
 exports.register = function(server, options, next) {
     server.route({
